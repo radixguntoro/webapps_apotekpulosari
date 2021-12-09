@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in data_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.name }}</td>
+                    <td class="text-right">{{ cart.price | currency:"":0 }}</td>
+                    <td class="text-right">{{ cart.qty | currency:"":0 }}</td>
+                    <td class="text-right">{{ cart.subtotal | currency:"":0 }}</td>
+                </tr>
+                <tr ng-if="data_cart.length < 1">
+                    <td colspan="6" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-right" colspan="2" rowspan="5"></td>
+                    <td class="text-right">Subtotal</td>
+                    <td class="text-right font-weight-bold" colspan="2">{{ trSalesRegular.total | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Potongan</td>
+                    <td class="text-right font-weight-bold" colspan="2" style="border-bottom: 3px double #888;">{{ trSalesRegular.discount | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total</td>
+                    <td class="text-right font-weight-bold text-primary" colspan="2">{{ trSalesRegular.grand_total | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Tunai</td>
+                    <td class="text-right font-weight-bold" colspan="2" style="border-bottom: 3px double #888;">{{ trSalesRegular.payment | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Kembali</td>
+                    <td class="text-right font-weight-bold text-blue" colspan="2">{{ trSalesRegular.balance | currency:"":0 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

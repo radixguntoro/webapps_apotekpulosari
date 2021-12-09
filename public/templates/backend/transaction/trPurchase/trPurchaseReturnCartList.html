@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Barang</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="150">Harga</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in return_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.medicineName }}</td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-focus="setBlockText(this, $event)" ng-model="cart.qty" ng-change="calcQty(this)" ng-click="setBlockText(this, $event)" disabled></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="2" ng-focus="setBlockText(this, $event)" ng-change="calcPriceSell(this, 'tablet')" ng-model="cart.price" disabled></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="2" ng-model="cart.subtotal" disabled></td>
+                    <td class="text-center">
+                        <a href="javascript:;" ng-click="removeCartReturn(this)">
+                            <i class="mdi mdi-delete mdi-24px text-gray-600"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="return_cart.length < 1">
+                    <td colspan="6" class="text-center">Data retur masih kosong.</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center" style="vertical-align: middle;">
+                        <img src="../backend/img/icon/bg-purchase.png" width="320" class="d-inline-block" alt="">
+                    </td>
+                    <td colspan="5" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trPurchase/trPurchaseReturnCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

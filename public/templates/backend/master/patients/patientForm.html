@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="name" class="caption font-weight-bold">Nama *</label>
+            <input id="name" type="text" class="form-control" name="name" autofocus autocomplete="off"
+                placeholder="Masukkan nama..." ng-model="patient.name" required>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="age" class="caption font-weight-bold">Umur</label>
+            <input id="age" type="text" class="form-control" name="age" autofocus autocomplete="off"
+                placeholder="Masukkan umur..." ng-model="patient.age">
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="address" class="caption font-weight-bold">Alamat</label>
+            <input id="address" type="text" class="form-control" name="address" autofocus autocomplete="off"
+                placeholder="Masukkan alamat..." ng-model="patient.address">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="city" class="caption font-weight-bold">Kota</label>
+            <input id="city" type="text" class="form-control" name="city" autofocus autocomplete="off"
+                placeholder="Masukkan kota..." ng-model="patient.city">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="phone" class="caption font-weight-bold">Phone</label>
+            <input id="phone" type="text" class="form-control" name="phone" autofocus autocomplete="off"
+                placeholder="Masukkan phone..." ng-model="patient.phone">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label class="caption font-weight-bold">Status</label>
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="active" name="status" class="custom-control-input" ng-model="patient.status" value="1" hidden ng-checked="true">
+                <label class="custom-control-label" for="active">Active</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="inactive" name="status" class="custom-control-input" ng-model="patient.status" value="0" hidden>
+                <label class="custom-control-label" for="inactive">Non Active</label>
+            </div>
+        </div>
+    </div>
+</div>

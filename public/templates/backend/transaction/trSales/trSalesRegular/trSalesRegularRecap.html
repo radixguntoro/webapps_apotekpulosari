@@ -1,0 +1,141 @@
+<div class="content-title mb-4">
+    <div class=" d-flex align-items-start justify-content-start">
+        <div class="shape-sm rounded-circle d-flex align-items-center justify-content-center d-inline-block mr-3">
+            <i class="mdi mdi-format-list-bulleted mdi-inherit mdi-24px"></i>
+        </div>
+        <div>
+            <h3 class="mb-1 text-capitalize font-weight-bold">Penjualan</h3>
+            <ol class="breadcrumb pl-0 py-0 bg-gray-300 mb-0">
+                <li class="breadcrumb-item"><a href="#">Sales</a></li>
+                <li class="breadcrumb-item"><a href="#">Regular</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Recap</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content-page rounded p-0 mb-4">
+    <div class="content-page-header p-4 rounded-top">
+        <div class="row">
+            <div class="col-md-6 d-inline-flex align-items-center">
+                <div class="content-title">
+                    <h5 class="mb-0 text-capitalize font-weight-bold">Reguler</h5>
+                </div>
+            </div>
+            <div class="col-md-6 d-inline-flex align-items-center justify-content-end pl-0">
+                <a class="btn btn-gradient-amber px-4 rounded waves-effect waves-dark mb-0 d-inline-flex align-items-center justify-content-center"
+                    ui-sref="admin-trSalesRegular-create">
+                    <i class="mdi mdi-cash-register mdi-20px mr-1 d-flex align-items-center"></i>
+                    Kasir
+                </a>
+            </div>
+            <div class="col-md-12">
+                <div class="dropdown-divider border-gray-400 mb-4 mt-4"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 d-inline-flex align-items-center pr-0">
+                <span class="mr-2">Tampilkan</span>
+                <select name="page_row" id="" class="custom-select input-line-primary" ng-model="page_row"
+                    ng-selected="row" ng-options="row for row in rows">
+                </select>
+            </div>
+            <div class="col-md-10 d-inline-flex align-items-center">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text py-0" id="inputGroupPrepend">
+                            <i class="mdi mdi-magnify mdi-20px text-gray-600 d-flex align-items-center"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Cari berdasarkan nomor transaksi..." ng-change="searchData()" ng-model="search_text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-page rounded p-0">
+    <div class="content-page-body position-relative">
+        <div class="loading rounded" ng-show="loading">
+            <div class="showbox d-flex align-items-center justify-content-center">
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                            stroke-miterlimit="10" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="text-uppercase">
+                    <th class="pl-4" width="56"></th>
+                    <th width="150">Tanggal</th>
+                    <th>No. Transaksi</th>
+                    <th width="175">Grand Total</th>
+                    <th width="175">Total Bayar</th>
+                    <th width="175">Total Kembali</th>
+                    <th width="110">&nbsp;</th>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="trSalesReg in data | itemsPerPage:page_row" total-items="total_data"
+                        current-page="pagination.current">
+                        <td class="pl-4">{{ ($index + 1) + (pagination.current - 1) * page_row}}</td>
+                        <td>{{ trSalesReg.createdAt}}</td>
+                        <td class="text-primary font-weight-bold">{{ trSalesReg.id }}</td>
+                        <td class="text-right">{{ trSalesReg.grandTotal | currency:"":0 }}</td>
+                        <td class="text-right">{{ trSalesReg.payment | currency:"":0 }}</td>
+                        <td class="text-right">{{ trSalesReg.balance | currency:"":0 }}</td>
+                        <td class="pr-4 text-right">
+                            <a href="javascript:;" class="animated zoomIn faster waves-effect waves-dark mr-2" ng-click="readDataById(trSalesReg.id)" data-toggle="modal" data-target="#trSalesReg-{{ trSalesReg.id }}">
+                                <i class="mdi mdi-file-eye mdi-24px text-gray-600"></i>
+                            </a>
+                            <div class="modal fade" id="trSalesReg-{{ trSalesReg.id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                style="padding-right: 0 !important;">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-charcoal px-4 border-0 position-relative" style="overflow: hidden;">
+                                            <div class="shape-modal-header bg-primary"></div>
+                                            <!-- <h5 class="modal-title text-white">Detil Pembelian</h5> -->
+                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body px-5 pb-4" style="overflow-y: hidden;">
+                                            <div class="shape-modal-company bg-charcoal"></div>
+                                            <div ng-include="'../templates/backend/transaction/trSales/trSalesRegular/trSalesRegularRecapDetail.html'"></div>
+                                        </div>
+                                        <div class="modal-footer border-0 position-relative" style="overflow: hidden; height: 62px">
+                                            <div class="shape-modal-strip bg-primary m-0"></div>
+                                            <div class="shape-modal-footer bg-charcoal m-0"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a ui-sref="admin-trSalesRegular-print({id: trSalesReg.id})" class="animated zoomIn faster waves-effect waves-dark">
+                                <i class="mdi mdi-printer mdi-24px text-gray-600"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr ng-show="data.length < 1">
+                        <td class="text-center" colspan="7">
+                            <img src="../backend/img/icon/nodata.png" width="160" class="my-3" alt="">
+                            <div>Data tidak ditemukan</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="content-page-footer bg-gray-100 pt-3 pb-3 pl-4 pr-4 rounded-bottom" ng-hide="loading">
+        <div class="row">
+            <div class="col-md-2 d-inline-flex align-items-center">
+                Total: {{ total_data }}
+            </div>
+            <div class="col-md-10">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"
+                    template-url="../templates/backend/transaction/trSales/trSalesRegular/trSalesRegularPagination.html">
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

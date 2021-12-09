@@ -1,0 +1,111 @@
+@mixin card {
+    width: 100%;
+    min-height: calc(64px * 1.25);
+    position: relative;
+    background: white;
+    margin-top: 1.25rem;
+}
+
+@mixin shape-icon {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    color: white;
+    top: -16px;
+    @extend .d-flex;
+    @extend .justify-content-center;
+    @extend .align-items-center;
+}
+
+.card-icon-l {
+    text-align: right;
+    padding: 1rem 1.5rem 1rem 6rem;
+    @include card;
+    @extend .elevation-smooth;
+
+    .shape-icon {
+        @include shape-icon;
+        @extend .elevation-smooth;
+        left: 1rem;
+    }
+}
+
+.card-icon-r {
+    text-align: left;
+    padding: 1rem 6rem 1rem 1.5rem;
+    @include card;
+    @extend .elevation-smooth;
+
+    .shape-icon {
+        @include shape-icon;
+        @extend .elevation-smooth;
+        right: 1rem;
+    }
+}
+
+.col-md-4.mb-4,
+.col-md-3.mb-4,
+.col-md-6.mb-4 {
+    &:nth-child(1n+0) {
+        .media.border-left {
+            border-left: 3px solid $primary !important;
+        }
+    }
+
+    &:nth-child(2n+0) {
+        .media.border-left {
+            border-left: 3px solid $amber !important;
+        }
+    }
+
+    &:nth-child(4n+0) {
+        .media.border-left {
+            border-left: 3px solid $success !important;
+        }
+    }
+
+    &:nth-child(5n+0) {
+        .media.border-left {
+            border-left: 3px solid $info !important;
+        }
+    }
+}
+
+.card-mix-color {
+    &:nth-child(1n+0) {
+        border-left: 3px solid $primary !important;
+    }
+
+    &:nth-child(2n+0) {
+        border-left: 3px solid $amber !important;
+    }
+
+    &:nth-child(4n+0) {
+        border-left: 3px solid $success !important;
+    }
+
+    &:nth-child(5n+0) {
+        border-left: 3px solid $info !important;
+    }
+}
+
+a {
+    color: $black;
+
+    &:hover {
+        text-decoration: none;
+
+        .card-title {
+            color: $gray-500;
+        }
+    }
+}
+
+.card-border {
+    transition: all .2s ease;
+
+    &:hover {
+        transition: all .2s ease;
+        @extend .elevation-smooth2;
+    }
+}

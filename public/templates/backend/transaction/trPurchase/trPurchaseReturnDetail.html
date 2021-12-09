@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered border-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary" width="56">No</th>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary">Barang</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Harga</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="125">Diskon (%)</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Subtotal</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="40">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody class="text-left">
+                <tr ng-repeat="item in trPurchase.details">
+                    <td class="border-bottom-0 border-top-0">{{ $index + 1 }}</td>
+                    <td class="border-bottom-0 border-top-0">{{ item.medicineName }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.qty | currency:"":0 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.price | currency:"":2 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.discount * 100 | currency:"":0 }} %</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.subtotal | currency:"":2 }}</td>
+                    <td class="text-center border-bottom-0 border-top-0">
+                        <a href="javascript:;" data-toggle="modal" data-target="#item-{{ $index }}" class="animated zoomIn faster waves-effect waves-dark">
+                            <i class="mdi mdi-cart-arrow-up mdi-24px text-gray-600"></i>
+                        </a>
+                        <div class="modal fade" id="item-{{ $index }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true"
+                            style="padding-right: 0 !important;">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body px-4 text-left">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-info mt-2" role="alert">
+                                                    <strong>Info!</strong>&nbsp;Jumlah retur tidak boleh melebihi jumlah pembelian.
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="caption font-weight-bold">Kuantitas</label>
+                                                    <input type="text" class="form-control text-right" ng-model="item.qtyReturn" ui-number-mask="0" ng-click="setBlockText(this, $event)" ng-keyup="calcCompareQty(this)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="modal-footer d-inline-flex justify-content-center align-content-center border-0 pb-4">
+                                        <button class="btn btn-light px-4" data-dismiss="modal">Batal</button>
+                                        <button class="btn btn-success px-4"data-dismiss="modal"  ng-click="addCartReturn(this, trPurchase, item)" >Tambahkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 text-small">HPP</td>
+                    <td class="border-bottom-0 bg-gray-200 font-weight-bold text-right" colspan="2">{{ trPurchase.total | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">Potongan</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold text-right" colspan="2">{{ trPurchase.discount | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 border-top-0 text-small">Subtotal</td>
+                    <td class="border-bottom-0 border-top-0 bg-gray-200 font-weight-bold text-right" colspan="2">{{ trPurchase.total - trPurchase.discount | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">PPN</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold text-right" colspan="2">{{ trPurchase.total * trPurchase.ppn | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-top-0 border-left-0 border-bottom-0" colspan="4"></td>
+                    <td class="border-warning bg-warning text-white text-uppercase font-weight-bold text-small">Total</td>
+                    <td class="border-warning bg-warning text-white font-weight-bold text-right" colspan="2">{{ trPurchase.grandTotal | currency:"":2 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Pasien</label>
+                    <input type="text" class="form-control" placeholder="Isi nama pasien..." ng-model="trSalesLab.patient">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Umur</label>
+                    <input type="text" class="form-control" placeholder="Isi umur pasien..." ng-model="trSalesLab.age">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <hr style="margin-top: 0.85rem">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Glukosa Puasa</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.glucosa_fasting">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Glukosa 2 Jam PP</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.glucosa_2hours_pp">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Glukosa Acak</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.glucosa_random">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-0">
+                    <label class="caption font-weight-bold">Asam Urat</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.uric_acid">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-0">
+                    <label class="caption font-weight-bold">Kolesterol</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.cholesterol">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-0">
+                    <label class="caption font-weight-bold">Tekanan Darah (Tensi)</label>
+                    <input type="text" class="form-control" placeholder="Isi nilai..." ng-model="trSalesLab.blood_pressure">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <label class="caption font-weight-bold">Nilai Normal</label>
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase">Pemeriksaan</th>
+                    <th class="text-center text-uppercase">Nilai Normal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Glucosa Puasa</td>
+                    <td>75-110 md/dL</td>
+                </tr>
+                <tr>
+                    <td>Glucosa 2 Jam PP</td>
+                    <td>< 125 md/dL</td>
+                </tr>
+                <tr>
+                    <td>Glucosa Acak</td>
+                    <td>< 140 md/dL</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Asam Urat</td>
+                    <td>P: 2.4 - 5.7 md/dL</td>
+                </tr>
+                <tr>
+                    <td>L: 3.4 - 7.0 md/dL</td>
+                </tr>
+                <tr>
+                    <td>Cholesterol</td>
+                    <td>< 200 md/dL</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <hr>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text py-0" id="inputGroupPrepend">
+                        <i class="mdi mdi-magnify mdi-20px d-flex align-items-center text-gray-600 d-flex align-items-center"></i>
+                    </span>
+                </div>
+                <autocompitem placeholder="Cari barang..." selection="selection" source="readMedicineByAutoComplete" class="form-control" ng-scanner-detect="scan_options" ng-model="barcodeAdd">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in data_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.name }}</td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.price" ng-change="calcTotal(this, cart)" ng-click="setBlockText(this, $event)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.qty" ng-change="calcTotal(this, cart)" ng-click="setBlockText(this, $event)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.subtotal" disabled></td>
+                    <td>
+                        <a href="javascript:;" ng-click="removeCart(cart)">
+                            <i class="mdi mdi-delete mdi-24px text-gray-600"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="data_cart.length < 1">
+                    <td colspan="6" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center" style="vertical-align: middle;">
+                        <img src="../backend/img/icon/cart.png" width="360" class="d-inline-block" alt="">
+                    </td>
+                    <td colspan="4" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trSales/trSalesLab/trSalesLabCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.footer {
+    display: block;
+    width: calc(100% - 260px);
+    height: 48px;
+    background: white;
+    float: right;
+    -webkit-transition-property: top, bottom, width;
+    transition-property: top, bottom, width;
+    -webkit-transition-duration: 0.2s, .2s, .35s;
+    transition-duration: 0.2s, .2s, .35s;
+    -webkit-transition-timing-function: linear, linear, ease;
+    transition-timing-function: linear, linear, ease;
+}
+
+.sidebar-icon {
+    .footer {
+        width: calc(100% - 72px);
+    }
+}

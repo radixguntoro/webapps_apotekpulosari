@@ -1,0 +1,9 @@
+@each $background,
+$bg-val in $theme-colors {
+    .bg-gradient-#{$background} {
+        background: linear-gradient(to right, lighten($bg-val, 5%), $bg-val);
+    }
+    .bg-gradient-strong-#{$background} {
+        background: linear-gradient(to right, lighten($bg-val, 15%), $bg-val);
+    }
+}

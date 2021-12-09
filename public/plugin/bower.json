@@ -1,0 +1,32 @@
+{
+  "name": "Vencel Studio",
+  "authors": [
+    "DESKTOP-JI6H4LS\\Bos Jengki <radixguntoro@gmail.com>"
+  ],
+  "description": "Jasa Web, Aplikasi dan Desain Surabaya",
+  "main": "",
+  "keywords": [
+    "plugin"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.6.1",
+    "angular-aria": "^1.6.1",
+    "angular-ui-router": "^0.4.2",
+    "angular-messages": "^1.6.1",
+    "angular-route": "^1.6.2",
+    "nivoslider": "*",
+    "velocity": "^1.5.0",
+    "angular-ui-tinymce": "^0.0.19",
+    "angularfire": "^2.3.0"
+  }
+}

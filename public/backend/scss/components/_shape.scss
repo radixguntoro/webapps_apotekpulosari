@@ -1,0 +1,74 @@
+.shape-sm {
+    width: 48px;
+    height: 48px;
+    background: white;
+    @extend .elevation-smooth;
+}
+
+.strip {
+    &:nth-child(1) {
+        width: 28px;
+        border-bottom: 2px solid $gray-600;
+        margin-bottom: 4px;
+    }
+
+    &:nth-child(2) {
+        width: 28px;
+        border-bottom: 2px solid $gray-600;
+        margin-bottom: 4px;
+    }
+
+    &:nth-child(3) {
+        width: 20px;
+        border-bottom: 2px solid $gray-600;
+    }
+
+    @include media-breakpoint-only(xs) {
+        &:nth-child(1) {
+            width: 24px;
+        }
+
+        &:nth-child(2) {
+            width: 16px;
+        }
+
+        &:nth-child(3) {
+            width: 24px;
+        }
+    }
+}
+
+.shape-modal-company {
+    width: calc(100% - 500px);
+    height: 96px;
+    position: absolute;
+    left: -24px;
+    top: 0;
+    transform: skew(-24deg,0deg);
+}
+
+.shape-modal-header {
+    width: calc(100% - 500px);
+    height: 62px;
+    position: absolute;
+    right: -24px;
+    top: 0;
+    transform: skew(24deg,0deg);
+}
+
+.shape-modal-footer {
+    width: calc(100% - 500px);
+    height: 62px;
+    position: absolute;
+    right: -24px;
+    bottom: 0;
+    transform: skew(-24deg,0deg);
+}
+
+.shape-modal-strip {
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

@@ -1,0 +1,46 @@
+<div class="p-4 bg-gray-200">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Total</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right" ng-model="user.total" ui-number-mask="0" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Potongan</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right" ng-model="user.discount" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Grand Total</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right font-weight-bold" ng-model="user.grand_total" ui-number-mask="0" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Total Bayar</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right" ng-model="user.payment" ui-number-mask="0" ui-number-mask="0" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Kembali</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right font-weight-bold text-blue" ng-model="user.balance" ui-number-mask="0" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

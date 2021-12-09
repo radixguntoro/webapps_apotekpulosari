@@ -1,0 +1,8 @@
+@each $color,
+$value in $theme-colors {
+    .badge-huge-#{$color} {
+        @include badge-variant($value);
+        padding: .5rem;
+        font-size: .875rem;
+    }
+}

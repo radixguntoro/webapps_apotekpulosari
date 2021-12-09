@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="name" class="caption font-weight-bold">Nama</label>
+            <input id="name" type="text" class="form-control" name="name" ng-model="medicine.name" autocomplete="off" placeholder="Masukkan nama..." required>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="group" class="caption font-weight-bold">Kelompok</label>
+            <ui-select ng-model="medicine.category.selected" theme="selectize" on-select="setCategory(this, medicine.category)">
+                <ui-select-match placeholder="Pilih Kelompok...">
+                    {{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="category in getCategories | filter: $select.search">
+                    <span>{{ category.name }}</span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="group" class="caption font-weight-bold">Satuan</label>
+            <ui-select ng-model="medicine.unit.selected" theme="selectize">
+                <ui-select-match placeholder="Pilih Satuan...">
+                    {{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="unit in getUnits | filter: $select.search">
+                    <span>{{ unit.name }}</span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="group" class="caption font-weight-bold">Konsinyasi</label>
+            <ui-select ng-model="medicine.supplier.selected" theme="selectize">
+                <ui-select-match placeholder="Pilih Konsinyasi...">
+                    {{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="supplier in getSuppliers | filter: $select.search">
+                    <span>{{ supplier.name }}</span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group mb-0">
+            <label for="qtyTotal" class="caption font-weight-bold">Total Kuantitas</label>
+            <input id="qtyTotal" type="text" class="form-control text-right" name="qtyTotal" ng-model="medicine.qtyTotal" autocomplete="off" placeholder="0" ui-number-mask="0" ui-negative-number ng-focus="setBlockText(this, $event)" required>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group mb-0">
+            <label for="qtyMin" class="caption font-weight-bold">Minimum Kuantitas</label>
+            <input id="qtyMin" type="text" class="form-control text-right" name="qtyMin" ng-model="medicine.qtyMin" autocomplete="off" placeholder="0" ui-number-mask="0" ng-focus="setBlockText(this, $event)" required>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <!-- <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+            <li class="nav-item nav-custom-pill mr-2" role="presentation">
+                <a class="nav-link active" id="box-tab" data-toggle="tab" href="javascript:;" data-target="#box" role="tab" aria-controls="box" aria-selected="true">Box</a>
+            </li>
+            <li class="nav-item nav-custom-pill mx-1" role="presentation">
+                <a class="nav-link" id="strip-tab" data-toggle="tab" href="javascript:;" data-target="#strip" role="tab" aria-controls="strip" aria-selected="false">Strip</a>
+            </li>
+            <li class="nav-item nav-custom-pill ml-2" role="presentation">
+                <a class="nav-link" id="tablet-tab" data-toggle="tab" href="javascript:;" data-target="#tablet" role="tab" aria-controls="tablet" aria-selected="false">Biji</a>
+            </li>
+        </ul> -->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" id="box" role="tabpanel" aria-labelledby="box-tab">
+                <div ng-include="'../templates/backend/master/medicines/medicineFormBox.html'"></div>
+            </div>
+            <div class="tab-pane fade" id="strip" role="tabpanel" aria-labelledby="strip-tab">
+                <div ng-include="'../templates/backend/master/medicines/medicineFormStrip.html'"></div>
+            </div>
+            <div class="tab-pane fade show active" id="tablet" role="tabpanel" aria-labelledby="tablet-tab">
+                <div ng-include="'../templates/backend/master/medicines/medicineFormTablet.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label class="caption font-weight-bold">Status</label>
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="active" name="status" class="custom-control-input" ng-model="medicine.status" value="active" hidden ng-checked="true">
+                <label class="custom-control-label" for="active">Active</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="nonactive" name="status" class="custom-control-input" ng-model="medicine.status" value="inactive" hidden>
+                <label class="custom-control-label" for="nonactive">Non Active</label>
+            </div>
+        </div>
+    </div>
+</div>

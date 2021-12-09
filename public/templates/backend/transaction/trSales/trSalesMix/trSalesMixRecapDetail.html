@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-9 text-left text-white pr-0">
+        <div class="media">
+            <i class="mdi mdi-home-city mdi-36px"></i>
+            <div class="media-body ml-3">
+                <!-- <p class="caption mb-1">Supplier</p> -->
+                <h4 class="mb-0 text-uppercase font-weight-bold">Apotek Pulosari</h4>
+                <p class="caption text-gray-500">Jl. Pulosari III, Surabaya</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-5 text-left pl-0">
+        <h1 class="text-uppercase font-weight-bold">Faktur</h1>
+    </div>
+    <div class="col-md-9 text-left pr-0">
+        <p class="caption mt-3 mb-0" style="font-size: .875rem">No. Transaksi</p>
+        <h6 class="text-primary font-weight-bold mb-1">{{ tr_sales_mix.id }}</h6>
+        <p class="caption mt-0 mb-0" style="font-size: .875rem">Pengguna</p>
+        <h6 class="font-weight-bold mb-1">{{ tr_sales_mix.cashierName }}</h6>
+    </div>
+    <div class="col-md-3 text-left pl-0">
+        <!-- <h1 class="text-uppercase font-weight-bold">Faktur</h1> -->
+        <p class="caption mt-3 mb-0" style="font-size: .875rem">Nomor Invoice</p>
+        <h6 class="font-weight-bold mb-1">{{ tr_sales_mix.invoiceNumber }}</h6>
+        <p class="caption mt-0 mb-0" style="font-size: .875rem">Waktu</p>
+        <h6 class="font-weight-bold mb-1">{{ tr_sales_mix.date }} {{ tr_sales_mix.time }}</h6>
+        <!-- <table class="table table-sm table-borderless text-left mb-1">
+            <tbody>
+                <tr class="bg-white">
+                    <td class="font-weight-bold px-0" width="125">Nomor</td>
+                    <td class="font-weight-bold" width="10">:</td>
+                    <td>{{ tr_sales_mix.invoiceNumber }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="font-weight-bold px-0" width="125">Tanggal</td>
+                    <td class="font-weight-bold" width="10">:</td>
+                    <td>{{ tr_sales_mix.date }} {{ tr_sales_mix.time }}</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+    <div class="col-md-12 mt-3">
+        <table class="table table-bordered border-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary" width="56">No</th>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary">Barang</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Harga</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody class="text-left">
+                <tr ng-repeat="item in tr_sales_mix.details">
+                    <td class="border-bottom-0 border-top-0">{{ $index + 1 }}</td>
+                    <td class="border-bottom-0 border-top-0">{{ item.medicineName }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ 1 | currency:"":0 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.price | currency:"":0 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.subtotal | currency:"":0 }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-left-0" colspan="3" rowspan="5"></td>
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 text-small">Subtotal</td>
+                    <td class="border-bottom-0 bg-gray-200 font-weight-bold">{{ tr_sales_mix.total | currency:"":0 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">Potongan</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold">{{ tr_sales_mix.discount | currency:"":0 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 border-top-0 text-small">Total</td>
+                    <td class="border-bottom-0 border-top-0 bg-gray-200 font-weight-bold">{{ tr_sales_mix.total - tr_sales_mix.discount | currency:"":0 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">Tunai</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold">{{ tr_sales_mix.payment | currency:"":0 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-warning bg-warning text-white text-uppercase font-weight-bold text-small">Kembali</td>
+                    <td class="border-warning bg-warning text-white font-weight-bold">{{ tr_sales_mix.balance | currency:"":0 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

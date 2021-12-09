@@ -1,0 +1,151 @@
+<div class="content-title mb-4">
+    <div class=" d-flex align-items-start justify-content-start">
+        <div class="shape-sm rounded-circle d-flex align-items-center justify-content-center d-inline-block mr-3">
+            <i class="mdi mdi-format-list-bulleted mdi-inherit mdi-24px"></i>
+        </div>
+        <div>
+            <h3 class="mb-1 text-capitalize font-weight-bold">Retur Pembelian</h3>
+            <ol class="breadcrumb pl-0 py-0 bg-gray-300 mb-0">
+                <li class="breadcrumb-item"><a href="#">Return</a></li>
+                <li class="breadcrumb-item"><a href="#">Purchase</a></li>
+                <li class="breadcrumb-item active" aria-current="page">List</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content-page rounded p-0 mb-4">
+    <div class="content-page-header p-4 rounded-top">
+        <div class="row">
+            <div class="col-md-6 d-inline-flex align-items-center">
+                <div class="content-title">
+                    <h5 class="mb-0 text-capitalize font-weight-bold">Daftar Data</h5>
+                </div>
+            </div>
+            <div class="col-md-6 d-inline-flex align-items-center justify-content-end pl-0"></div>
+            <div class="col-md-12">
+                <div class="dropdown-divider border-gray-400 mb-4 mt-4"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 d-inline-flex align-items-center pr-0">
+                <span class="mr-2">Tampilkan</span>
+                <select name="page_row" id="" class="custom-select input-line-primary" ng-model="page_row"
+                    ng-selected="row" ng-options="row for row in rows">
+                </select>
+            </div>
+            <div class="col-md-10 d-inline-flex align-items-center">
+                <div class="dropdown mr-3">
+                    <button class="btn btn-secondary d-inline-flex align-items-center justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-tune mr-1"></i>Filter</button>
+                    <div class="dropdown-menu" style="min-width: 12rem;">
+                        <form class="px-3 pt-2">
+                            <div class="form-group" ng-repeat="status in getStatus">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck{{ status.id }}" checked ng-click="setFilter(this, $event, status.id)" >
+                                    <label class="custom-control-label" for="customCheck{{ status.id }}">{{ status.name }}</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text py-0" id="inputGroupPrepend">
+                            <i class="mdi mdi-magnify mdi-20px text-gray-600 d-flex align-items-center"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Cari berdasarkan nomor transaksi..." ng-change="searchData()" ng-model="search_text">
+                </div>
+                <a class="btn btn btn-light px-4 rounded waves-effect waves-dark mb-0 d-inline-flex align-items-center justify-content-center ml-3" ng-click="unsetCheckList(this)" ng-show="is_payment">
+                    <i class="mdi mdi-close mdi-20px mr-1 d-flex align-items-center"></i>
+                    Batal
+                </a>
+                <button class="btn btn-gradient-blue px-4 rounded waves-effect waves-dark mb-0 d-inline-flex align-items-center justify-content-center text-white ml-3" ng-show="is_payment" ng-disabled="get_id.length < 1" ng-click="updateDataStatus()">
+                    Lunasi
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-page rounded p-0">
+    <div class="content-page-body position-relative">
+        <div class="loading rounded" ng-show="loading">
+            <div class="showbox d-flex align-items-center justify-content-center">
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                            stroke-miterlimit="10" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="text-uppercase">
+                    <th class="pl-4" width="60">
+                        <div class="custom-control custom-checkbox" ng-show="is_payment" style="min-height: 1.25rem">
+                            <input type="checkbox" class="custom-control-input" id="checkAll" ng-click="setCheckAll(is_check_all)">
+                            <label class="custom-control-label" for="checkAll"></label>
+                        </div>
+                    </th>
+                    <th width="170">Tanggal Retur</th>
+                    <th>Supplier</th>
+                    <th width="140">Subtotal</th>
+                    <th width="125">Potongan</th>
+                    <th class="text-center" width="72">PPN</th>
+                    <th width="140">Total</th>
+                    <th width="110">&nbsp;</th>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="return in data | itemsPerPage:page_row" total-items="total_data"
+                        current-page="pagination.current">
+                        <td class="pl-4">
+                            <span ng-hide="is_payment">{{ ($index + 1) + (pagination.current - 1) * page_row}}</span>
+                            <div class="custom-control custom-checkbox" ng-if="is_payment && (return.status == 'credit' || return.status == 'consignment' || return.status == 'cod')" style="min-height: 1.25rem">
+                                <input type="checkbox" class="custom-control-input" id="check-{{ $index }}" ng-checked="is_check_all" ng-click="setCheckData(this, $event, return.id)">
+                                <label class="custom-control-label" for="check-{{ $index }}"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div>{{ return.date }}</div>
+                            <div class="text-primary font-weight-bold">{{ return.id }}</div>
+                        </td>
+                        <td>
+                            <div>{{ return.supplierName }}</div>
+                            <p class="caption text-small font-weight-bold font-italic mb-0">No. Faktur: {{ return.invoiceNumber }}</p>
+                        </td>
+                        <td class="text-right">{{ return.total | currency:"":2 }}</td>
+                        <td class="text-right">{{ return.discount | currency:"":2 }}</td>
+                        <td class="text-center">
+                            <i class="mdi mdi-check-circle mdi-24px text-success" ng-if="return.ppn > 0"></i>
+                            <i class="mdi mdi-close-circle mdi-24px text-danger" ng-if="return.ppn == 0"></i>
+                        </td>
+                        <td class="text-right">{{ return.grandTotal | currency:"":2 }}</td>
+                        <td class="pr-4 text-right">
+                            <a href="javascript:;" ui-sref="admin-return-trPurchase-detail({id: return.id})" class="waves-effect waves-dark mr-2 no-delay">
+                                <i class="mdi mdi-file-eye mdi-24px text-gray-600"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr ng-show="data.length < 1">
+                        <td class="text-center" colspan="9">
+                            <img src="../backend/img/icon/nodata.png" width="160" class="my-3" alt="">
+                            <div>Data tidak ditemukan</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="content-page-footer bg-gray-100 pt-3 pb-3 pl-4 pr-4 rounded-bottom" ng-hide="loading">
+        <div class="row">
+            <div class="col-md-2 d-inline-flex align-items-center">
+                Total: {{ total_data }}
+            </div>
+            <div class="col-md-10">
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"
+                    template-url="../templates/backend/return/trPurchase/returnTrPurchasePagination.html">
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

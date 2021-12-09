@@ -1,0 +1,124 @@
+<div class="content-title d-flex align-items-center justify-content-start">
+    <div
+        class="shape-sm rounded-circle d-flex align-items-center justify-content-center d-inline-block mr-3 animated zoomIn faster">
+        <img src="../public/backend/img/icon/dashboard.png" width="24" height="24" class="d-inline-block" alt="">
+    </div>
+    <h5 class="mb-0 animated zoomIn faster text-uppercase font-weight-bold">Dashboard</h5>
+</div>
+<div class="dropdown-divider border-gray-400 mb-3 mt-3"></div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card-icon-l rounded animated zoomIn faster mb-3">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-icon rounded bg-gradient-amber">
+                <i class="mdi mdi-cash-register mdi-24px"></i>
+            </div>
+            <div class="caption mb-1">Pendapatan </div>
+            <h5>{{ dashboard.count_trbooking | currency:"":0 }}</h5>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-icon-l rounded animated zoomIn faster mb-3">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-icon rounded bg-gradient-success">
+                <i class="mdi mdi-wallet mdi-24px"></i>
+            </div>
+            <div class="caption mb-1">Uang Saku Keluar</div>
+            <h5>{{ dashboard.count_exroadcost | currency:"":0 }}</h5>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-icon-l rounded animated zoomIn faster mb-3">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-icon rounded bg-gradient-primary">
+                <i class="mdi mdi-account-multiple mdi-24px"></i>
+            </div>
+            <div class="caption mb-1">Pelanggan Aktif</div>
+            <h5>{{ dashboard.count_member | currency:"":0 }}</h5>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-icon-l rounded animated zoomIn faster mb-3">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-icon rounded bg-gradient-danger">
+                <i class="mdi mdi-account-tie mdi-24px"></i>
+            </div>
+            <div class="caption mb-1">Sopir Aktif</div>
+            <h5>{{ dashboard.count_driver | currency:"":0 }}</h5>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="content-page rounded animated zoomIn faster mt-2">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <h5 class="mb-1 font-weight-bold">Grafik Pendapatan</h5>
+            <p class="caption mb-3">Per Tahun 2020</p>
+            <canvas class="chart chart-line" chart-data="data_trbo" chart-labels="labels"
+                chart-series="series"></canvas>
+            <!-- <canvas class="chart chart-line" chart-data="data" chart-labels="tr_payments_labels" chart-series="tr_payments_series" chart-click="onClick" chart-options="options" height="121"></canvas> -->
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="content-page rounded animated zoomIn faster mt-2">
+            <div class="loading rounded" ng-show="loading" style="z-index: 0 !important">
+                <div class="showbox d-flex align-items-center justify-content-center">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <h5 class="mb-1 font-weight-bold">Grafik Pengeluaran</h5>
+            <p class="caption mb-3">Per Tahun 2020</p>
+            <canvas class="chart chart-line" chart-data="data_excost" chart-labels="labels"
+                chart-series="series"></canvas>
+            <!-- <canvas class="chart chart-line" chart-data="data" chart-labels="tr_payments_labels" chart-series="tr_payments_series" chart-click="onClick" chart-options="options" height="121"></canvas> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+@each $background,
+$bg-val in $theme-colors {
+    .custom-switch-#{$background} {
+        .custom-control-input:checked~.custom-control-label::before {
+            color: #fff;
+            border-color: $bg-val;
+            background-color: $bg-val;
+        }
+    }
+}

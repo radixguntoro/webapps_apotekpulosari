@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <autocompitem placeholder="Cari barang..." selection="selection" source="readMedicineByAutoComplete" class="form-control" ng-scanner-detect="scan_options" ng-model="barcodeAdd" disabled>
+            <input type="hidden" class="form-control" ng-model="invoice">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="20">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in user.details">
+                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        {{ cart.name }}
+                    </td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.price" ng-change="updateCartPrice(user, user.$id)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.qty" disabled></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.subtotal" disabled></td>
+                    <td></td>
+                </tr>
+                <tr ng-if="user.total == 0">
+                    <td colspan="6" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center" style="vertical-align: middle;">
+                        <img src="../backend/img/icon/cart.png" width="360" class="d-inline-block" alt="">
+                    </td>
+                    <td colspan="4" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trSales/trSalesRegular/trSalesRegularOwnerCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

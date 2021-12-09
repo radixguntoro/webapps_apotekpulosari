@@ -1,0 +1,124 @@
+nav.navbar {
+    width: calc(100% - 260px);
+    height: 56px;
+    background: white;
+    right: 0;
+    left: auto;
+    -webkit-transition-property: top, bottom, width;
+    transition-property: top, bottom, width;
+    -webkit-transition-duration: 0.2s, .2s, .35s;
+    transition-duration: 0.2s, .2s, .35s;
+    -webkit-transition-timing-function: linear, linear, ease;
+    transition-timing-function: linear, linear, ease;
+
+    @extend .elevation-smooth;
+
+    .nav {
+        width: 100%;
+
+        .nav-item {
+            .nav-link {
+                color: $gray-600;
+                padding: .5rem .875rem;
+            }
+
+            .nav-icon-badge {
+                position: relative;
+
+                .badge {
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    top: -.525rem;
+                    left: 0.25rem;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        // background: linear-gradient(to right, lighten($primary, 5%), $primary);
+
+        .navbar-brand {
+            background: linear-gradient(to right, lighten($primary, 5%), $primary);
+            width: 56px;
+            height: 56px;
+            position: absolute;
+            left: 0;
+        }
+
+        .nav {
+            width: 100%;
+
+            .nav-item {
+                .nav-link {
+                    padding: 0 0.5rem;
+                    text-align: center;
+
+                    &:after {
+                        border: 0;
+                    }
+
+                    i.mdi {
+                        // color: white;
+                    }
+
+                    .text-icon {
+                        display: none;
+                    }
+
+                    .mdi {
+                        margin: 0 !important;
+                    }
+
+                    // .dropdown-menu {
+
+                    // }
+                }
+
+                .nav-icon-badge {
+                    position: relative;
+
+                    .badge {
+                        position: absolute;
+                        width: 18px;
+                        height: 20px;
+                        top: -.125rem;
+                        left: 0.25rem;
+                    }
+                }
+            }
+        }
+
+        .strip {
+            border-color: white;
+        }
+    }
+}
+
+body.sidebar-icon {
+    nav {
+        width: calc(100% - 72px);
+
+        .strip {
+            &:nth-child(1) {
+                width: 28px;
+                border-bottom: 2px solid $gray-600;
+                margin-bottom: 4px;
+            }
+
+            &:nth-child(2) {
+                width: 28px;
+                border-bottom: 2px solid $gray-600;
+                margin-bottom: 4px;
+            }
+
+            &:nth-child(3) {
+                width: 28px;
+                border-bottom: 2px solid $gray-600;
+            }
+        }
+    }
+}

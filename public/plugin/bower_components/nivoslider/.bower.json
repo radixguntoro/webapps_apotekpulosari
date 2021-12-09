@@ -1,0 +1,14 @@
+{
+  "name": "nivoslider",
+  "homepage": "https://github.com/gilbitron/Nivo-Slider",
+  "_release": "32193f27d7",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "32193f27d7a0342a1625cb464e0598243a3bfab5"
+  },
+  "_source": "https://github.com/gilbitron/Nivo-Slider.git",
+  "_target": "*",
+  "_originalSource": "nivoslider",
+  "_direct": true
+}

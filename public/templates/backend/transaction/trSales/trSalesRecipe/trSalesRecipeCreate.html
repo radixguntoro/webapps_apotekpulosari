@@ -1,0 +1,88 @@
+<div class="content-title mb-4">
+    <div class=" d-flex align-items-start justify-content-start">
+        <div class="shape-sm rounded-circle d-flex align-items-center justify-content-center d-inline-block mr-3">
+            <i class="mdi mdi-cash-register mdi-inherit mdi-24px"></i>
+        </div>
+        <div>
+            <h3 class="mb-1 text-capitalize font-weight-bold">Penjualan</h3>
+            <ol class="breadcrumb pl-0 py-0 bg-gray-300 mb-0">
+                <li class="breadcrumb-item"><a href="#">Sales</a></li>
+                <li class="breadcrumb-item"><a href="#">Recipe</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content-page rounded mb-0 p-0">
+    <div class="loading rounded" ng-show="loading">
+        <div class="showbox d-flex align-items-center justify-content-center">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="content-page-header px-4 pt-4 rounded-top">
+        <div class="row">
+            <div class="col-md-6 d-inline-flex align-items-center">
+                <div class="content-title d-flex align-items-center justify-content-start">
+                    <h5 class="mb-0 text-capitalize font-weight-bold">Resep</h5>
+                </div>
+            </div>
+            <div class="col-md-6 d-inline-flex align-items-center justify-content-end pl-0">
+                <a href="javascript:;" class="btn btn-gradient-warning px-4 rounded waves-effect text-white waves-dark mb-0 d-inline-flex align-items-center justify-content-center mr-2" data-toggle="modal" data-target="#trSalesRecipe-create" ng-show="!is_verification">
+                    <i class="mdi mdi-plus mdi-20px d-flex align-items-center mr-1 d-flex align-items-center"></i>
+                    Buat Obat Resep
+                </a>
+                <div class="modal fade" id="trSalesRecipe-create" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true"
+                    style="padding-right: 0 !important;">
+                    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body px-4">
+                                <div ng-include="'../templates/backend/transaction/trSales/trSalesRecipe/trSalesRecipeFormCartList.html'"></div>
+                            </div>
+                            <div class="modal-footer d-inline-flex justify-content-center align-content-center border-0 pb-4">
+                                <button class="btn btn-light px-4" data-dismiss="modal">Batal</button>
+                                <button class="btn btn-success px-4" ng-click="addRecipe(this, trSalesRecipeForm)" data-dismiss="modal">Tambah ke Keranjang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a ui-sref="admin-trSalesRecipe-recap" class="btn btn-gradient-blue px-4 rounded waves-effect text-white waves-dark mb-0 d-inline-flex align-items-center justify-content-center" ng-show="!is_verification">
+                    <i class="mdi mdi-format-list-bulleted-square mdi-20px d-flex align-items-center mr-1 d-flex align-items-center"></i>
+                    Rekap
+                </a>
+            </div>
+            <div class="col-md-12">
+                <div class="dropdown-divider border-gray-400 mb-0 mt-4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-page-body px-4">
+        <div class="">
+            <div class="row">
+                <div class="col-md-12 pt-4">
+                    <div ng-include="'../templates/backend/transaction/trSales/trSalesRecipe/trSalesRecipeCartList.html'" ng-show="!is_verification"></div>
+                    <div ng-include="'../templates/backend/transaction/trSales/trSalesRecipe/trSalesRecipeCartVerification.html'" ng-show="is_verification"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-page-footer bg-gray-100 px-4 py-3 rounded-bottom" id="myTab">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <a href="javascript:;" ng-click="setVerification()" class="btn btn-light d-inline-flex justify-content-center align-items-center px-4 waves-effect waves-dark" ng-show="is_verification">Kembali</a>
+                <button class="btn btn-gradient-success elevation-z1 d-inline-flex justify-content-center align-items-center px-4 waves-effect waves-dark" ng-disabled="trSalesRecipe.payment < trSalesRecipe.grand_total || trSalesRecipe.payment == 0" ng-show="!is_verification" ng-click="setVerification()">
+                    Periksa
+                    <i class="mdi mdi-check mdi-20px d-flex align-items-center ml-2 ml-1"></i>
+                </button>
+                <button class="btn btn-gradient-success elevation-z1 d-inline-flex justify-content-center align-items-center px-4 waves-effect waves-dark" ng-disabled="trSalesRecipe.payment < trSalesRecipe.grand_total || trSalesRecipe.payment == 0" ng-show="is_verification" ng-click="createData()">
+                    Simpan
+                    <i class="mdi mdi-check-all mdi-20px d-flex align-items-center ml-2 ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text py-0" id="inputGroupPrepend">
+                        <i class="mdi mdi-magnify mdi-20px d-flex align-items-center text-gray-600 d-flex align-items-center"></i>
+                    </span>
+                </div>
+                <autocompitem placeholder="Cari barang..." selection="selection" source="readMedicineByAutoComplete" class="form-control" ng-scanner-detect="scan_options" ng-model="barcodeAdd">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="150">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Diskon</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in data_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        {{ cart.name }}
+                        <p class="caption mb-1 font-italic">Harga Terakhir: {{ cart.price_sell_old | currency:"":2 }} | Harga Jual: {{ cart.tabletPriceSell | currency:"":2 }}</p>
+                        <div>
+                            <a href="javascript:;" data-toggle="modal" data-target="#price-{{ $index + 1 }}">
+                                <i class="mdi mdi-circle-edit-outline"></i> 
+                                Ubah Harga Jual
+                            </a>
+                            <div class="modal fade" id="price-{{ $index + 1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Harga Jual</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="" class="caption font-weight-bold">Harga Sebelumnya</label>
+                                            <input type="text" class="form-control text-right" ng-model="cart.price_sell_old" ui-number-mask="2" ng-click="setBlockText(this, $event)" disabled>
+                                        </div>
+                                        <label for="" class="caption font-weight-bold">Harga Sekarang</label>
+                                        <input type="text" class="form-control text-right" ng-model="cart.tabletPriceSell" ui-number-mask="2"ng-click="setBlockText(this, $event)">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-focus="setBlockText(this, $event)" ng-model="cart.qty" ng-change="calcQty(this)" ng-click="setBlockText(this, $event)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="2" ng-focus="setBlockText(this, $event)" ng-change="calcPriceSell(this, 'tablet')" ng-model="cart.price"></td>
+                    <td><input type="text" class="form-control text-right" ui-percentage-mask="2" ng-focus="setBlockText(this, $event)" ng-model="cart.discount" ng-change="calcDiscountPercent(this)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="2" ng-model="cart.subtotal" disabled></td>
+                    <td class="text-center">
+                        <a href="javascript:;" ng-click="removeCart(this)">
+                            <i class="mdi mdi-delete mdi-24px text-gray-600"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="data_cart.length < 1">
+                    <td colspan="7" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-center" style="vertical-align: middle;">
+                        <img src="../backend/img/icon/bg-purchase.png" width="320" class="d-inline-block" alt="">
+                    </td>
+                    <td colspan="4" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trPurchase/trPurchaseCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

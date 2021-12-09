@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-8 text-left text-white">
+        <div class="media">
+            <i class="mdi mdi-home-city mdi-36px"></i>
+            <div class="media-body ml-3">
+                <!-- <p class="caption mb-1">Supplier</p> -->
+                <h5 class="mb-0 text-uppercase font-weight-bold">{{ trPurchase.supplierName }}</h5>
+                <p class="caption text-gray-500">{{ trPurchase.supplierPhone }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 text-left">
+        <p class="caption mt-5 mb-0" style="font-size: .875rem">No. Transaksi</p>
+        <h5 class="text-primary font-weight-bold">{{ trPurchase.id }}</h5>
+    </div>
+    <div class="col-md-4 text-left">
+        <h1 class="text-uppercase font-weight-bold">Faktur</h1>
+        <table class="table table-sm table-borderless text-left mb-1">
+            <tbody>
+                <tr class="bg-white">
+                    <td class="font-weight-bold px-0" width="125">Nomor</td>
+                    <td class="font-weight-bold" width="10">:</td>
+                    <td>{{ trPurchase.invoiceNumber }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="font-weight-bold px-0" width="125">Tanggal</td>
+                    <td class="font-weight-bold" width="10">:</td>
+                    <td>{{ trPurchase.date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 mt-4">
+        <table class="table table-bordered border-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary" width="56">No</th>
+                    <th class="text-center text-uppercase text-white bg-primary border-primary">Barang</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Harga</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="125">Diskon (%)</th>
+                    <th class="text-center text-uppercase text-white bg-warning border-warning" width="150">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody class="text-left">
+                <tr ng-repeat="item in trPurchaseDetail">
+                    <td class="border-bottom-0 border-top-0">{{ $index + 1 }}</td>
+                    <td class="border-bottom-0 border-top-0">{{ item.medicineName }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.qty | currency:"":0 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.price | currency:"":2 }}</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.discount * 100 | currency:"":0 }} %</td>
+                    <td class="text-right border-bottom-0 border-top-0">{{ item.subtotal - (item.subtotal * item.discount) | currency:"":2 }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 text-small">HPP</td>
+                    <td class="border-bottom-0 bg-gray-200 font-weight-bold">{{ trPurchase.total | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">Potongan</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold">{{ trPurchase.discount | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase bg-gray-200 font-weight-bold border-bottom-0 border-top-0 text-small">Subtotal</td>
+                    <td class="border-bottom-0 border-top-0 bg-gray-200 font-weight-bold">{{ trPurchase.total - trPurchase.discount | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-bottom-0 border-top-0 border-left-0" colspan="4"></td>
+                    <td class="text-uppercase font-weight-bold border-bottom-0 border-top-0 text-small">PPN</td>
+                    <td class="border-bottom-0 border-top-0 font-weight-bold">{{ (trPurchase.total - trPurchase.discount) * trPurchase.ppn | currency:"":2 }}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border-top-0 border-left-0 border-bottom-0" colspan="4"></td>
+                    <td class="border-warning bg-warning text-white text-uppercase font-weight-bold text-small">Total</td>
+                    <td class="border-warning bg-warning text-white font-weight-bold">{{ trPurchase.grandTotal | currency:"":2 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

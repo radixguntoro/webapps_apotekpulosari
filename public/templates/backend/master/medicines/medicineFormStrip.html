@@ -1,0 +1,38 @@
+<div class="row mt-3">
+    <div class="col-md-12 d-none">
+        <div class="form-group">
+            <label for="stripUnit" class="caption font-weight-bold">Unit</label>
+            <input id="stripUnit" type="text" class="form-control" name="stripUnit" ng-model="medicine.stripUnit" autocomplete="off" placeholder="Masukkan nama unit..." disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="stripBarcode" class="caption font-weight-bold">Barcode</label>
+            <input id="stripBarcode" type="text" class="form-control" name="stripBarcode" ng-model="medicine.stripBarcode" autocomplete="off" placeholder="Masukkan barcode...">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="stripPriceSell" class="caption font-weight-bold">Harga Jual</label>
+            <input id="stripPriceSell" type="text" class="form-control text-right" name="stripPriceSell" ng-model="medicine.stripPriceSell" ng-keyup="calcPricePurchase(this, 'strip')" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="stripProfitPercent" class="caption font-weight-bold">Keuntungan</label>
+            <input type="text" class="form-control text-right" ng-model="medicine.stripProfitPercent" ui-percentage-mask="2" autocomplete="off" disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="stripPricePurchase" class="caption font-weight-bold">Harga Beli</label>
+            <input id="stripPricePurchase" type="text" class="form-control text-right" name="stripPricePurchase" ng-model="medicine.stripPricePurchase" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="stripQty" class="caption font-weight-bold">Kuantitas</label>
+            <input id="stripQty" type="text" class="form-control text-right" name="stripQty" ng-model="medicine.stripQty" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+</div>

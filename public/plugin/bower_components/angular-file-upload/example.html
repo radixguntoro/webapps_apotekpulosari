@@ -1,0 +1,104 @@
+<div class="grid-x grid-padding-x">
+    <div class="large-3 cell">
+        <h3>Select files</h3>
+        <div ng-show="uploader.isHTML5">
+            <!-- 3. nv-file-over uploader="link" over-class="className" -->
+            <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
+                Base drop zone
+            </div>
+            <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
+            <div nv-file-drop="" uploader="uploader">
+                <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+                    Another drop zone with its own settings
+                </div>
+            </div>
+        </div>
+        <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+        <br/>
+    </div>
+    <div class="large-9 cell" style="margin-bottom: 40px">
+        <p>Queue length: {{ uploader.queue.length }}</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th ng-show="uploader.isHTML5">Size</th>
+                    <th ng-show="uploader.isHTML5">Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in uploader.queue">
+                    <td>
+                        <strong>{{ item.file.name }}</strong>
+                        <!-- Image preview -->
+                        <!--auto height-->
+                        <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                        <!--auto width-->
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                        {{ file: item._file, height: 100 }}
+                        <!--fixed width and height -->
+                        <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                    </td>
+                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                    <td ng-show="uploader.isHTML5">
+                        <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                            <div class="progress-meter md-success" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span ng-show="item.isSuccess"><i class="mdi mdi-check"></i></span>
+                        <span ng-show="item.isCancel"><i class="mdi mdi-close"></i></span>
+                        <span ng-show="item.isError"><i class="mdi mdi-delete"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="button button-success" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            Upload
+                        </button>
+                        <button type="button" class="button button-warning" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                            Cancel
+                        </button>
+                        <button type="button" class="button button-alert" ng-click="item.remove()">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div>
+                Queue progress:
+                <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter md-success" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <button type="button" class="button" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                Upload all
+            </button>
+            <button type="button" class="button" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                Cancel all
+            </button>
+            <button type="button" class="button" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                Remove all
+            </button>
+        </div>
+    </div>
+</div>
+<!-- <div nv-file-drop="" uploader="uploader">
+                                            <div nv-file-over="" uploader="uploader" over-class="another-file-over-class">
+                                                <div class="grid-x small-up-2 medium-up-4 large-up-5" style="position: absolute; top: 0;" id="vs-box-upload">
+                                                    <div ng-show="uploader.isHTML5" class="cell" ng-repeat="item in uploader.queue">
+                                                        <div class="vs-box-square" squarecol>
+                                                            <div class="vs-box-preview-img" ng-show="uploader.isHTML5" ng-thumb="{ height: 300 }" style="background: #ccc">
+                                                            </div>
+                                                            <div ng-show="uploader.isHTML5" id="upload-progress">
+                                                                <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                                                                    <div class="progress-meter md-success" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->

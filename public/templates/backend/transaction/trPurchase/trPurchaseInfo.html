@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text py-0" id="inputGroupPrepend">
+                        <i class="mdi mdi-magnify mdi-20px d-flex align-items-center text-gray-600 d-flex align-items-center"></i>
+                    </span>
+                </div>
+                <autocompsupp placeholder="Cari supplier..." selection="selection" source="readSupplierByAutoComplete" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="px-4 py-3 border border-gray-400 mb-0 rounded bg-gray-200">
+            <div class="media">
+                <i class="mdi mdi-home-city mdi-36px"></i>
+                <div class="media-body ml-3">
+                    <p class="caption mb-1">Supplier</p>
+                    <h6 class="mb-0 text-uppercase font-weight-bold">{{ trPurchase.supplierName }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="px-4 py-3 border border-gray-400 mb-0 rounded bg-gray-200">
+            <div class="media">
+                <i class="mdi mdi-phone-classic mdi-36px"></i>
+                <div class="media-body ml-3">
+                    <p class="caption mb-1">Telp</p>
+                    <h6 class="mb-0 text-uppercase font-weight-bold">{{ trPurchase.supplierPhone }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="dropdown-divider border-gray-400 mb-4 mt-4"></div>
+    </div>
+</div>

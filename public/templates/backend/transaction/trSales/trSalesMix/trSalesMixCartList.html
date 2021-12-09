@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="caption font-weight-bold">Pasien</label>
+            <input type="text" class="form-control" placeholder="Isi nama pasien..." ng-model="trSalesMix.patient">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-4">
+                    <label class="caption font-weight-bold">Berat</label>
+                    <input type="text" class="form-control" placeholder="Isi berat pasien..." ng-model="trSalesMix.weight">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-4">
+                    <label class="caption font-weight-bold">Umur</label>
+                    <input type="text" class="form-control" placeholder="Isi umur pasien..." ng-model="trSalesMix.age">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-4">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Tuslah</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="medicineMix in trSalesMix.medicineMix">
+                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        <div class="mb-1 font-weight-bold text-primary text-uppercase">{{ medicineMix.medicineMixName }}</div>
+                        <div class="text-small text-uppercase font-italic">Komposisi:</div>
+                        <ul class="text-uppercase text-small font-italic mb-0">
+                            <li ng-repeat="details in medicineMix.details">{{ details.name }}</li>
+                        </ul>
+                    </td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="medicineMix.price" disabled></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="medicineMix.tuslah" disabled></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="medicineMix.subtotal" disabled></td>
+                    <td>
+                        <a href="javascript:;" ng-click="removeMix(medicineMix)">
+                            <i class="mdi mdi-delete mdi-24px text-gray-600"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="trSalesMix.medicineMix.length < 1">
+                    <td colspan="7" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center" style="vertical-align: middle;">
+                        <img src="../backend/img/icon/cart.png" width="360" class="d-inline-block" alt="">
+                    </td>
+                    <td colspan="4" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trSales/trSalesMix/trSalesMixCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

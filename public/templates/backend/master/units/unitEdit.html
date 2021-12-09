@@ -1,0 +1,54 @@
+<form name="unitForm" ng-submit="updateData(unitForm.$valid)">
+    <div class="content-title mb-4">
+        <div class=" d-flex align-items-start justify-content-start">
+            <div class="shape-sm rounded-circle d-flex align-items-center justify-content-center d-inline-block mr-3">
+                <i class="mdi mdi-circle-edit-outline mdi-inherit mdi-24px"></i>
+            </div>
+            <div>
+                <h3 class="mb-1 text-capitalize font-weight-bold">Satuan</h3>
+                <ol class="breadcrumb pl-0 py-0 bg-gray-300 mb-0">
+                    <li class="breadcrumb-item"><a href="#">Unit</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="content-page rounded p-0">
+        <div class="loading rounded" ng-show="loading">
+            <div class="showbox d-flex align-items-center justify-content-center">
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3"
+                            stroke-miterlimit="10" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="content-page-header p-4 rounded-top">
+            <div class="row">
+                <div class="col-md-12 d-inline-flex align-items-center">
+                    <div class="content-title d-flex align-items-center justify-content-start">
+                        <h5 class="mb-0 text-capitalize font-weight-bold">Ubah Data</h5>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="dropdown-divider border-gray-400 mb-0 mt-4"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content-page-body px-4 pb-4">
+            <div ng-include="'../templates/backend/master/units/unitForm.html'"></div>
+        </div>
+        <div class="content-page-footer bg-gray-100 px-4 py-3 rounded-bottom">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a ui-sref="admin-unit-list" class="btn btn-light d-inline-flex justify-content-center align-items-center px-4 waves-effect waves-dark">Kembali</a>
+                    <button class="btn btn-gradient-success elevation-z1 d-inline-flex justify-content-center align-items-center px-4 waves-effect waves-dark" ng-disabled="unitForm.$invalid">
+                        Simpan
+                        <i class="mdi mdi-check-all mdi-20px d-flex align-items-center ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

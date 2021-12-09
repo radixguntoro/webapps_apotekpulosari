@@ -1,0 +1,47 @@
+.table {
+    thead {
+        tr {
+            th {
+                font-size: .75rem;
+                font-weight: $font-weight-bold;
+                height: 46px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                &:not(.badge) {
+                    font-size: .875rem;
+                }
+            }
+        }
+    }
+
+    tfoot.font-size-fixed {
+        tr {
+            td {
+                font-size: .875rem;
+            }
+        }
+    }
+}
+
+.fixed-table-header {
+    table {
+        width: calc(100% - 1rem) !important;
+
+        thead {
+            tr {
+                th {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+.tr-mask-overcharge {
+    background-color: lighten($danger, 15%) !important;
+}

@@ -1,0 +1,38 @@
+<div class="row mt-3">
+    <div class="col-md-12 d-none">
+        <div class="form-group">
+            <label for="boxUnit" class="caption font-weight-bold">Unit</label>
+            <input id="boxUnit" type="text" class="form-control" name="boxUnit" ng-model="medicine.boxUnit" autocomplete="off" placeholder="Masukkan nama unit..." disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="boxBarcode" class="caption font-weight-bold">Barcode</label>
+            <input id="boxBarcode" type="text" class="form-control" name="boxBarcode" ng-model="medicine.boxBarcode" autocomplete="off" placeholder="Masukkan barcode...">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="boxPriceSell" class="caption font-weight-bold">Harga Jual</label>
+            <input id="boxPriceSell" type="text" class="form-control text-right" name="boxPriceSell" ng-model="medicine.boxPriceSell" ng-keyup="calcPricePurchase(this, 'box')" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="boxProfitPercent" class="caption font-weight-bold">Keuntungan</label>
+            <input type="text" class="form-control text-right" ng-model="medicine.boxProfitPercent" ui-percentage-mask="2" autocomplete="off" disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="boxPricePurchase" class="caption font-weight-bold">Harga Beli</label>
+            <input id="boxPricePurchase" type="text" class="form-control text-right" name="boxPricePurchase" ng-model="medicine.boxPricePurchase" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="boxQty" class="caption font-weight-bold">Kuantitas</label>
+            <input id="boxQty" type="text" class="form-control text-right" name="boxQty" ng-model="medicine.boxQty" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+</div>

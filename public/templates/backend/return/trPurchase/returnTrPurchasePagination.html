@@ -1,0 +1,16 @@
+<ul class="pagination mb-0 justify-content-end pagination-sm" ng-if="1 < pages.length">
+    <li class="page-item mr-1" ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+        <a href="javascript:;" class="page-link rounded mr-1" ng-click="setCurrent(pagination.current - 1)">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    <li class="page-item mr-1" ng-repeat="pageNumber in pages track by $index"
+        ng-class="{ active : pagination.current == pageNumber, disabled: pageNumber == '' }">
+        <a href="javascript:;" class="page-link rounded mr-1" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+    </li>
+    <li class="page-item mr-1" ng-if="directionLinks" ng-class="{ disabled: pagination.current == pagination.last }">
+        <a href="javascript:;" class="page-link rounded" ng-click="setCurrent(pagination.current + 1)">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

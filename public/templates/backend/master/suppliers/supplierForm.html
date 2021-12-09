@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="name" class="caption font-weight-bold">Nama *</label>
+            <input id="name" type="text" class="form-control" name="name" autofocus autocomplete="off"
+                placeholder="Masukkan name..." ng-model="supplier.name" required>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="phone" class="caption font-weight-bold">Phone</label>
+            <input id="phone" type="text" class="form-control" name="phone" autofocus autocomplete="off"
+                placeholder="Masukkan phone..." ng-model="supplier.phone">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label class="caption font-weight-bold">Status</label>
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="active" name="status" class="custom-control-input" ng-model="supplier.status" value="1" hidden ng-checked="true">
+                <label class="custom-control-label" for="active">Active</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="inactive" name="status" class="custom-control-input" ng-model="supplier.status" value="0" hidden>
+                <label class="custom-control-label" for="inactive">Non Active</label>
+            </div>
+        </div>
+    </div>
+</div>

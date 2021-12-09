@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12 mt-3">
+        <div class="content-title d-flex align-items-center justify-content-start">
+            <h5 class="mb-0 text-capitalize font-weight-bold">Komposisi</h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Isikan nama racik..." ng-model="trSalesMixForm.medicineMixName" ng-click="setBlockText(this, $event)">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text py-0" id="inputGroupPrepend">
+                                <i class="mdi mdi-magnify mdi-20px d-flex align-items-center text-gray-600 d-flex align-items-center"></i>
+                            </span>
+                        </div>
+                        <autocompitem placeholder="Cari barang..." selection="selection" source="readMedicineByAutoComplete" class="form-control" ng-scanner-detect="scan_options" ng-model="barcodeAdd">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                    <th class="text-center text-uppercase" width="50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in data_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.name }}</td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.price" ng-change="calcTotalForm(this, cart)" ng-click="setBlockText(this, $event)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.qty" ng-change="calcTotalForm(this, cart)" ng-click="setBlockText(this, $event)"></td>
+                    <td><input type="text" class="form-control text-right" ui-number-mask="0" ng-model="cart.subtotal" disabled></td>
+                    <td>
+                        <a href="javascript:;" ng-click="removeCart(cart)">
+                            <i class="mdi mdi-delete mdi-24px text-gray-600"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="data_cart.length < 1">
+                    <td colspan="7" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-center" style="vertical-align: middle;">
+                        
+                    </td>
+                    <td colspan="4" class="p-0">
+                        <div ng-include="'../templates/backend/transaction/trSales/trSalesMix/trSalesMixFormCalcPrice.html'"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

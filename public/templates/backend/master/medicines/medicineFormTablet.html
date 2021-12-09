@@ -1,0 +1,38 @@
+<div class="row mt-3">
+    <div class="col-md-12 d-none">
+        <div class="form-group">
+            <label for="tabletUnit" class="caption font-weight-bold">Unit</label>
+            <input id="tabletUnit" type="text" class="form-control" name="tabletUnit" ng-model="medicine.tabletUnit" autocomplete="off" placeholder="Masukkan nama unit..." disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="tabletBarcode" class="caption font-weight-bold">Barcode</label>
+            <input id="tabletBarcode" type="text" class="form-control" name="tabletBarcode" ng-model="medicine.tabletBarcode" autocomplete="off" placeholder="Masukkan barcode...">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="tabletPriceSell" class="caption font-weight-bold">Harga Jual</label>
+            <input id="tabletPriceSell" type="text" class="form-control text-right" name="tabletPriceSell" ng-model="medicine.tabletPriceSell" ng-keyup="calcPricePurchase(this, 'tablet')" autocomplete="off" placeholder="0" ui-number-mask="0" ng-focus="setBlockText(this, $event)">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="tabletProfitPercent" class="caption font-weight-bold">Keuntungan</label>
+            <input type="text" class="form-control text-right" ng-model="medicine.tabletProfitPercent" ui-percentage-mask="2" autocomplete="off" disabled>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="tabletPricePurchase" class="caption font-weight-bold">Harga Beli</label>
+            <input id="tabletPricePurchase" type="text" class="form-control text-right" name="tabletPricePurchase" ng-model="medicine.tabletPricePurchase" autocomplete="off" placeholder="0" ui-number-mask="0" ng-focus="setBlockText(this, $event)">
+        </div>
+    </div>
+    <div class="col-md-12 d-none">
+        <div class="form-group">
+            <label for="tabletQty" class="caption font-weight-bold">Kuantitas</label>
+            <input id="tabletQty" type="text" class="form-control text-right" name="tabletQty" ng-model="medicine.tabletQty" autocomplete="off" placeholder="0" ui-number-mask="0">
+        </div>
+    </div>
+</div>

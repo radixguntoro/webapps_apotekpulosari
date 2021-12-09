@@ -1,0 +1,56 @@
+<div class="p-4 bg-gray-200">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Total</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right font-weight-bold" ng-model="return.total" ui-number-mask="2" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row mb-0">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Potongan</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right font-weight-bold" ng-model="return.discount" ui-number-mask="2" ng-change="calcDiscount(return)" ng-click="setBlockText(this, $event)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Subtotal</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right text-primary font-weight-bold" ng-model="return.subtotal" ui-number-mask="2" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row mb-0">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">PPN</label>
+                <div class="col-sm-8">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text pr-1" id="validatedInputGroupPrepend">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click="setPpn(is_ppn); $event.stopPropagation();" ng-checked="is_ppn" ng-disabled="return.grandTotal < 1">
+                                    <label class="custom-control-label" for="customCheck1"></label>
+                                </div>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control text-right font-weight-bold" ng-model="return.ppnPrice" ui-number-mask="2" ng-change="calcBalance(return)" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-12">
+            <div class="form-group row mb-0">
+                <label for="" class="col-sm-4 pr-0 col-form-label text-right">Grand Total</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control text-right text-blue font-weight-bold" ng-model="return.grandTotal" ui-number-mask="2" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

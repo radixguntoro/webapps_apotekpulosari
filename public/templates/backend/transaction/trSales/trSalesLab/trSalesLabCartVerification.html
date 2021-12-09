@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Pasien</label>
+                    <input type="text" class="form-control" placeholder="Isi nama pasien..." ng-model="trSalesLab.patient" disabled>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="caption font-weight-bold">Umur</label>
+                    <input type="text" class="form-control" placeholder="Isi umur pasien..." ng-model="trSalesLab.age" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12"><hr></div>
+    <div class="col-md-4 mb-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Glukosa Puasa</label>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_fasting != '' || trSalesLab.glucosa_fasting != null">{{ trSalesLab.glucosa_fasting }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_fasting == '' || trSalesLab.glucosa_fasting == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Glukosa 2 Jam PP</label>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_2hours_pp != '' || trSalesLab.glucosa_2hours_pp != null">{{ trSalesLab.glucosa_2hours_pp }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_2hours_pp == '' || trSalesLab.glucosa_2hours_pp == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Glukosa Acak</label>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_random != '' || trSalesLab.glucosa_random != null">{{ trSalesLab.glucosa_random }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.glucosa_random == '' || trSalesLab.glucosa_random == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Asam Urat</label>
+            <h5 class="mb-0" ng-if="trSalesLab.uric_acid != '' || trSalesLab.uric_acid != null">{{ trSalesLab.uric_acid }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.uric_acid == '' || trSalesLab.uric_acid == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Kolesterol</label>
+            <h5 class="mb-0" ng-if="trSalesLab.cholesterol != '' || trSalesLab.cholesterol != null">{{ trSalesLab.cholesterol }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.cholesterol == '' || trSalesLab.cholesterol == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded p-3">
+            <label class="caption font-weight-bold mb-0">Tekanan Darah (Tensi)</label>
+            <h5 class="mb-0" ng-if="trSalesLab.blood_pressure != '' || trSalesLab.blood_pressure != null">{{ trSalesLab.blood_pressure }}</h5>
+            <h5 class="mb-0" ng-if="trSalesLab.blood_pressure == '' || trSalesLab.blood_pressure == null">-</h5>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0 mt-4">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Nama</th>
+                    <th class="text-center text-uppercase" width="175">Harga</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in data_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.name }}</td>
+                    <td class="text-right">{{ cart.price | currency:"":0 }}</td>
+                    <td class="text-right">{{ cart.qty | currency:"":0 }}</td>
+                    <td class="text-right">{{ cart.subtotal | currency:"":0 }}</td>
+                </tr>
+                <tr ng-if="data_cart.length < 1">
+                    <td colspan="6" class="text-center">Keranjang belanja kosong</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-right" colspan="2" rowspan="5"></td>
+                    <td class="text-right">Subtotal</td>
+                    <td class="text-right font-weight-bold" colspan="2">{{ trSalesLab.total | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Potongan</td>
+                    <td class="text-right font-weight-bold" colspan="2" style="border-bottom: 3px double #888;">{{ trSalesLab.discount | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total</td>
+                    <td class="text-right font-weight-bold text-primary" colspan="2">{{ trSalesLab.grand_total | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Tunai</td>
+                    <td class="text-right font-weight-bold" colspan="2" style="border-bottom: 3px double #888;">{{ trSalesLab.payment | currency:"":0 }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Kembali</td>
+                    <td class="text-right font-weight-bold text-blue" colspan="2">{{ trSalesLab.balance | currency:"":0 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

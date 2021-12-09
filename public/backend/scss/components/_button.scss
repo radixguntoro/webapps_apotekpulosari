@@ -1,0 +1,89 @@
+.btn {
+    // min-height: 40px;
+
+    min- &:focus {
+        box-shadow: none !important;
+    }
+}
+
+@each $background,
+$bg-val in $theme-colors {
+    .btn-gradient-#{$background} {
+        color: white;
+        background: linear-gradient(to right, lighten($bg-val, 8%), $bg-val);
+        transition: all .2s;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+
+        &:hover {
+            color: white;
+            transition: all .2s;
+        }
+
+        &:active {
+            background-color: lighten($bg-val, 8%);
+            background-size: 100%;
+            transition: all 0s;
+        }
+
+        &:disabled {
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+    }
+
+    .btn-fl-gradient-#{$background} {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 0;
+        transition: all .2s ease;
+        background: linear-gradient(to right, lighten($bg-val, 5%), $bg-val);
+        color: white;
+
+        @extend .elevation-z6;
+        @extend .d-flex;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+
+        &:hover {
+            transition: all .2s ease;
+            @extend .elevation-z8;
+        }
+
+        &:focus {
+            transition: all .2s ease;
+            @extend .elevation-z6;
+        }
+
+        &:disabled {
+            @extend .elevation-z1;
+            pointer-events: none;
+            cursor: default;
+            background: lighten($bg-val, 24%) !important;
+        }
+    }
+
+    .btn-square-tiny {
+        width: 32px;
+        height: 32px;
+        @extend .d-inline-flex;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+    }
+}
+
+.btn-cancel {
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+}
+
+.float-br {
+    position: fixed;
+    bottom: 24px;
+    right: 16px;
+    z-index: 999;
+}
+
+.btn-sm {
+    padding: 0.175rem 0.45rem;
+}

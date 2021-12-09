@@ -1,0 +1,29 @@
+.sticky-table {
+    max-width: 100%;
+    overflow: scroll;
+    border-top: 0;
+    /* border-top: 1px solid #e0e0e0; */
+    /* border-bottom: 1px solid #e0e0e0; */
+    padding: 0!important
+}
+
+.sticky-table table {
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.sticky-table table tr.sticky-row td, .sticky-table table tr.sticky-row th {
+    background-color: #e0e0e0;
+    border: 0;
+    position: relative;
+    z-index: 5
+}
+
+.sticky-table table td.sticky-cell, .sticky-table table th.sticky-cell {
+    background-color: #e0e0e0;
+    position: relative;
+    z-index: 10
+}
+
+.sticky-table table tr.sticky-row td.sticky-cell, .sticky-table table tr.sticky-row th.sticky-cell { z-index: 15 }

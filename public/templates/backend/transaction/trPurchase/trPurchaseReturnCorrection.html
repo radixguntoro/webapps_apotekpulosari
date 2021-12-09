@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase" width="50">No</th>
+                    <th class="text-center text-uppercase">Barang</th>
+                    <th class="text-center text-uppercase" width="125">Kuantitas</th>
+                    <th class="text-center text-uppercase" width="150">Harga</th>
+                    <th class="text-center text-uppercase" width="175">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cart in return_cart">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ cart.medicineName }}</td>
+                    <td class="text-right">{{ cart.qty | currency:"":0 }}</td>
+                    <td class="text-right">{{ cart.price | currency:"":2 }}</td>
+                    <td class="text-right">{{ cart.subtotal | currency:"":2 }}</td>
+                </tr>
+            </tbody>
+            <tfoot class="font-size-fixed">
+                <tr>
+                    <td colspan="2" class="border-bottom-0 border-top-0 border-left-0" style="vertical-align: middle;"></td>
+                    <td colspan="2" class="text-right">Total</td>
+                    <td colspan="1" class="text-right bg-gray-200">{{ return.total | currency:"":2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border-bottom-0 border-top-0 border-left-0" style="vertical-align: middle;"></td>
+                    <td colspan="2" class="text-right">Diskon</td>
+                    <td colspan="1" class="text-right">{{ return.discount | currency:"":2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border-bottom-0 border-top-0 border-left-0" style="vertical-align: middle;"></td>
+                    <td colspan="2" class="text-right">Subtotal</td>
+                    <td colspan="1" class="text-right bg-gray-200">{{ return.subtotal | currency:"":2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border-bottom-0 border-top-0 border-left-0" style="vertical-align: middle;"></td>
+                    <td colspan="2" class="text-right">PPN</td>
+                    <td colspan="1" class="text-right">{{ return.ppn | currency:"":2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border-bottom-0 border-top-0 border-left-0" style="vertical-align: middle;"></td>
+                    <td colspan="2" class="text-right">Grand Total</td>
+                    <td colspan="1" class="text-right bg-gray-200 font-weight-bold">{{ return.grandTotal | currency:"":2 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
